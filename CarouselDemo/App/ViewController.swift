@@ -14,10 +14,13 @@ class ViewController: UIViewController {
     let colors: [UIColor] = [
         UIColor(red: 19.0/255.0, green: 51.0/255.0, blue: 76.0/255.0, alpha: 1.0),
         UIColor(red: 0.0/255.0, green: 87.0/255.0, blue: 46.0/255.0, alpha: 1.0),
+        UIColor(red: 253.0/255.0, green: 95.0/255.0, blue: 0.0/255.0, alpha: 1.0),
+        UIColor(red: 19.0/255.0, green: 51.0/255.0, blue: 76.0/255.0, alpha: 1.0),
+        UIColor(red: 0.0/255.0, green: 87.0/255.0, blue: 46.0/255.0, alpha: 1.0),
         UIColor(red: 253.0/255.0, green: 95.0/255.0, blue: 0.0/255.0, alpha: 1.0)
     ]
     
-    let emojis: [String] = ["👑", "🙈", "👾"]
+    //let emojis: [String] = ["👑", "🙈", "👾"]
     
     
     //MARK: UI
@@ -31,18 +34,21 @@ class ViewController: UIViewController {
     
     private lazy var collectionView: CarouselCollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = .init(width: 375, height: 500)
+        flowLayout.itemSize = .init(width: 1080, height: 500)
+        flowLayout.scrollDirection = .horizontal
         
-        let view = CarouselCollectionView(frame: .zero, collectionViewFlowLayout: flowLayout)
+        let view = CarouselCollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
         view.translatesAutoresizingMaskIntoConstraints = false
         //view.isAutoscrollEnabled = true
         //view.autoscrollTimeInterval = 3.0
-        view.showsVerticalScrollIndicator = false
-        view.showsHorizontalScrollIndicator = false
+        //view.showsVerticalScrollIndicator = false
+        //view.showsHorizontalScrollIndicator = false
         
-        view.register(CVCell.self, forCellWithReuseIdentifier:"id")
-        view.carouselDataSource = self
+        view.register(CVCell.self, forCellWithReuseIdentifier:"CVCell")
+        view.dataSource = self
+        view.delegate = self
+        //view.carouselDataSource = self
         
         return view
     }()
@@ -87,8 +93,7 @@ extension ViewController {
         super.viewDidLayoutSubviews()
         
         guard collectionView.frame != .zero else { return }
-        collectionView.flowLayout.itemSize = .init(width: collectionView.frame.width - 100,
-                                                   height: collectionView.frame.height)
+        //collectionView.flowLayout.itemSize = .init(width: collectionView.frame.width - 100, height: collectionView.frame.height)
         collectionView.reloadData()
     }
     
@@ -118,6 +123,7 @@ private extension ViewController {
 }
 
 
+#if os(iOS)
 //MARK: - CarouselCollectionView methods
 //MARK: CarouselCollectionViewDataSource implementation
 extension ViewController: CarouselCollectionViewDataSource {
@@ -140,3 +146,30 @@ extension ViewController: CarouselCollectionViewDataSource {
         //pageControl.currentPage = index
     }
 }
+#elseif os(tvOS)
+//MARK: - CarouselCollectionView methods
+//MARK: CarouselCollectionViewDataSource implementation
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return colors.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCell", for: indexPath) as! CVCell
+        
+        cell.backgroundColor = colors[indexPath.row]
+        //cell.label.text = emojis[indexPath.row]
+        
+        return cell
+    }
+    
+    
+}
+
+//MARK: CarouselCollectionViewDataSource implementation
+extension ViewController: UICollectionViewDelegate {
+    
+}
+#endif

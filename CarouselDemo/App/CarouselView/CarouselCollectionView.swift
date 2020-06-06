@@ -160,7 +160,7 @@ public class CarouselCollectionView: UICollectionView {
     }
 
     
-    // MARK: Autoscrolling
+    //MARK: Autoscrolling
     private func tryToStartTimer() {
         guard isAutoscrollEnabled else { return }
 
