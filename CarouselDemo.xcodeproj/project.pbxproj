@@ -17,6 +17,13 @@
 		CF36413C248AB78E0098BBE6 /* CarouselDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36413B248AB78E0098BBE6 /* CarouselDemoUITests.swift */; };
 		CF36414A248AB79E0098BBE6 /* CarouselCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF364149248AB79E0098BBE6 /* CarouselCollectionView.swift */; };
 		CF934EA7248BA58A000C0BC5 /* CCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF934EA6248BA58A000C0BC5 /* CCollectionViewCell.swift */; };
+		CF934EE5248BCCCF000C0BC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF934EE4248BCCCF000C0BC5 /* AppDelegate.swift */; };
+		CF934EEF248BCCD1000C0BC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF934EED248BCCD0000C0BC5 /* LaunchScreen.storyboard */; };
+		CF934EF4248BCCF1000C0BC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF364122248AB78E0098BBE6 /* Assets.xcassets */; };
+		CF934EF8248BCE22000C0BC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36411A248AB78A0098BBE6 /* ViewController.swift */; };
+		CF934EF9248BCE27000C0BC5 /* CarouselCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF364149248AB79E0098BBE6 /* CarouselCollectionView.swift */; };
+		CF934EFA248BCE2A000C0BC5 /* CCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF934EA6248BA58A000C0BC5 /* CCollectionViewCell.swift */; };
+		CF934EFB248BCE39000C0BC5 /* CarouselDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF36411F248AB78A0098BBE6 /* CarouselDemo.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +60,10 @@
 		CF36413D248AB78E0098BBE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF364149248AB79E0098BBE6 /* CarouselCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCollectionView.swift; sourceTree = "<group>"; };
 		CF934EA6248BA58A000C0BC5 /* CCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCollectionViewCell.swift; sourceTree = "<group>"; };
+		CF934EE2248BCCCF000C0BC5 /* CarouselDemoTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarouselDemoTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF934EE4248BCCCF000C0BC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CF934EEE248BCCD0000C0BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CF934EF0248BCCD1000C0BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +88,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CF934EDF248BCCCF000C0BC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -86,6 +104,7 @@
 				CF364115248AB78A0098BBE6 /* CarouselDemo */,
 				CF36412F248AB78E0098BBE6 /* CarouselDemoTests */,
 				CF36413A248AB78E0098BBE6 /* CarouselDemoUITests */,
+				CF934EE3248BCCCF000C0BC5 /* CarouselDemoTV */,
 				CF364114248AB78A0098BBE6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +115,7 @@
 				CF364113248AB78A0098BBE6 /* CarouselDemo.app */,
 				CF36412C248AB78E0098BBE6 /* CarouselDemoTests.xctest */,
 				CF364137248AB78E0098BBE6 /* CarouselDemoUITests.xctest */,
+				CF934EE2248BCCCF000C0BC5 /* CarouselDemoTV.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +150,8 @@
 		CF934EA2248B9555000C0BC5 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				CF934EF7248BCD90000C0BC5 /* iOS */,
+				CF934EF6248BCD83000C0BC5 /* tvOS */,
 				CF364122248AB78E0098BBE6 /* Assets.xcassets */,
 				CF364124248AB78E0098BBE6 /* LaunchScreen.storyboard */,
 				CF364127248AB78E0098BBE6 /* Info.plist */,
@@ -153,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				CF934EA5248B97C7000C0BC5 /* iOS */,
+				CF934EF5248BCD6D000C0BC5 /* tvOS */,
 			);
 			path = Structure;
 			sourceTree = "<group>";
@@ -162,6 +185,37 @@
 			children = (
 				CF364116248AB78A0098BBE6 /* AppDelegate.swift */,
 				CF364118248AB78A0098BBE6 /* SceneDelegate.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		CF934EE3248BCCCF000C0BC5 /* CarouselDemoTV */ = {
+			isa = PBXGroup;
+			children = (
+				CF934EED248BCCD0000C0BC5 /* LaunchScreen.storyboard */,
+			);
+			path = CarouselDemoTV;
+			sourceTree = "<group>";
+		};
+		CF934EF5248BCD6D000C0BC5 /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				CF934EE4248BCCCF000C0BC5 /* AppDelegate.swift */,
+			);
+			path = tvOS;
+			sourceTree = "<group>";
+		};
+		CF934EF6248BCD83000C0BC5 /* tvOS */ = {
+			isa = PBXGroup;
+			children = (
+				CF934EF0248BCCD1000C0BC5 /* Info.plist */,
+			);
+			path = tvOS;
+			sourceTree = "<group>";
+		};
+		CF934EF7248BCD90000C0BC5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -222,6 +276,23 @@
 			productReference = CF364137248AB78E0098BBE6 /* CarouselDemoUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CF934EE1248BCCCF000C0BC5 /* CarouselDemoTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CF934EF3248BCCD1000C0BC5 /* Build configuration list for PBXNativeTarget "CarouselDemoTV" */;
+			buildPhases = (
+				CF934EDE248BCCCF000C0BC5 /* Sources */,
+				CF934EDF248BCCCF000C0BC5 /* Frameworks */,
+				CF934EE0248BCCCF000C0BC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CarouselDemoTV;
+			productName = CarouselDemoTV;
+			productReference = CF934EE2248BCCCF000C0BC5 /* CarouselDemoTV.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -243,6 +314,9 @@
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = CF364112248AB78A0098BBE6;
 					};
+					CF934EE1248BCCCF000C0BC5 = {
+						CreatedOnToolsVersion = 11.5;
+					};
 				};
 			};
 			buildConfigurationList = CF36410E248AB78A0098BBE6 /* Build configuration list for PBXProject "CarouselDemo" */;
@@ -259,6 +333,7 @@
 			projectRoot = "";
 			targets = (
 				CF364112248AB78A0098BBE6 /* CarouselDemo */,
+				CF934EE1248BCCCF000C0BC5 /* CarouselDemoTV */,
 				CF36412B248AB78E0098BBE6 /* CarouselDemoTests */,
 				CF364136248AB78E0098BBE6 /* CarouselDemoUITests */,
 			);
@@ -286,6 +361,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF934EE0248BCCCF000C0BC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF934EEF248BCCD1000C0BC5 /* LaunchScreen.storyboard in Resources */,
+				CF934EF4248BCCF1000C0BC5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +405,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CF934EDE248BCCCF000C0BC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF934EF9248BCE27000C0BC5 /* CarouselCollectionView.swift in Sources */,
+				CF934EFB248BCE39000C0BC5 /* CarouselDemo.xcdatamodeld in Sources */,
+				CF934EF8248BCE22000C0BC5 /* ViewController.swift in Sources */,
+				CF934EFA248BCE2A000C0BC5 /* CCollectionViewCell.swift in Sources */,
+				CF934EE5248BCCCF000C0BC5 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -341,6 +437,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				CF364125248AB78E0098BBE6 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CF934EED248BCCD0000C0BC5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CF934EEE248BCCD0000C0BC5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -584,6 +688,46 @@
 			};
 			name = Release;
 		};
+		CF934EF1248BCCD1000C0BC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 33482W4AH2;
+				INFOPLIST_FILE = CarouselDemo/SupportingFiles/tvOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = reimondhill.CarouselDemoTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Debug;
+		};
+		CF934EF2248BCCD1000C0BC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 33482W4AH2;
+				INFOPLIST_FILE = CarouselDemo/SupportingFiles/tvOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = reimondhill.CarouselDemoTV;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -619,6 +763,15 @@
 			buildConfigurations = (
 				CF364147248AB78E0098BBE6 /* Debug */,
 				CF364148248AB78E0098BBE6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF934EF3248BCCD1000C0BC5 /* Build configuration list for PBXNativeTarget "CarouselDemoTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF934EF1248BCCD1000C0BC5 /* Debug */,
+				CF934EF2248BCCD1000C0BC5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

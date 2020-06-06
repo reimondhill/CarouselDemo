@@ -31,20 +31,7 @@ import UIKit
 public class CarouselCollectionView: UICollectionView {
     //MARK: - Properties
     public weak var carouselDataSource: CarouselCollectionViewDataSource?
-    
-
     public let flowLayout: UICollectionViewFlowLayout
-    public var autoscrollTimeInterval: TimeInterval = 5.0
-
-    public var isAutoscrollEnabled: Bool = false {
-        didSet {
-            if isAutoscrollEnabled {
-                tryToStartTimer()
-            } else {
-                stopAutoscrollTimer()
-            }
-        }
-    }
 
     /// Sets current displayed page.
     /// Permissible values are from `0` to numberOfItems returned in `carouselDataSource`.
@@ -64,7 +51,6 @@ public class CarouselCollectionView: UICollectionView {
             notifyDatasourceOnDisplayPage(newValue)
         }
     }
-
     public var fakeCurrentPage: Int {
         get {
             return Int(ceil(contentOffset.x / flowLayout.itemSize.width))
@@ -75,12 +61,21 @@ public class CarouselCollectionView: UICollectionView {
     }
 
     private var hasInitializedFirstPage = false
+    public var autoscrollTimeInterval: TimeInterval = 5.0
+    public var isAutoscrollEnabled: Bool = false {
+        didSet {
+            if isAutoscrollEnabled {
+                tryToStartTimer()
+            } else {
+                stopAutoscrollTimer()
+            }
+        }
+    }
     private var autoscrollTimer: Timer?
 
     private var numberOfItems: Int {
         return carouselDataSource?.numberOfItems ?? 0
     }
-
     private var fakeNumberOfItems: Int {
         if let realNumberOfItems = carouselDataSource?.numberOfItems,
             realNumberOfItems > 0 {
@@ -95,9 +90,12 @@ public class CarouselCollectionView: UICollectionView {
     public init(frame: CGRect, collectionViewFlowLayout layout: UICollectionViewFlowLayout) {
         flowLayout = layout
         super.init(frame: frame, collectionViewLayout: layout)
+        
         delegate = self
         dataSource = self
+        #if os(iOS)
         isPagingEnabled = true
+        #endif
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
@@ -109,7 +107,9 @@ public class CarouselCollectionView: UICollectionView {
         self.collectionViewLayout = flowLayout
         self.delegate = self
         self.dataSource = self
+        #if os(iOS)
         isPagingEnabled = true
+        #endif
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
@@ -162,9 +162,7 @@ public class CarouselCollectionView: UICollectionView {
     
     // MARK: Autoscrolling
     private func tryToStartTimer() {
-        guard isAutoscrollEnabled else {
-            return
-        }
+        guard isAutoscrollEnabled else { return }
 
         autoscrollTimer?.invalidate()
         autoscrollTimer = Timer.scheduledTimer(withTimeInterval: autoscrollTimeInterval, repeats: false) { [weak self] _ in self?.scrollToNextElement() }
@@ -177,6 +175,7 @@ public class CarouselCollectionView: UICollectionView {
 
     private func scrollToNextElement() {
         guard fakeNumberOfItems > 0 else { return }
+        
         if fakeCurrentPage == fakeNumberOfItems - 1 {
             setFakePage(1)
             let newPageRealIndex = fakeCurrentPage < (numberOfItems) ? fakeCurrentPage : 0
@@ -185,7 +184,8 @@ public class CarouselCollectionView: UICollectionView {
             tryToStartTimer()
             notifyDatasourceOnDisplayPage(newPageRealIndex)
             return
-        } else {
+        }
+        else {
             let newPageRealIndex = fakeCurrentPage < (numberOfItems) ? fakeCurrentPage : 0
             setFakePage(fakeCurrentPage + 1, animated: true)
             tryToStartTimer()

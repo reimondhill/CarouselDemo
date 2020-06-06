@@ -31,15 +31,16 @@ class ViewController: UIViewController {
     
     private lazy var collectionView: CarouselCollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = .init(width: 300, height: 500)
+        flowLayout.itemSize = .init(width: 375, height: 500)
         
         let view = CarouselCollectionView(frame: .zero, collectionViewFlowLayout: flowLayout)
     
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.isAutoscrollEnabled = true
-        view.autoscrollTimeInterval = 3.0
+        //view.isAutoscrollEnabled = true
+        //view.autoscrollTimeInterval = 3.0
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
+        
         view.register(CVCell.self, forCellWithReuseIdentifier:"id")
         view.carouselDataSource = self
         
@@ -88,6 +89,7 @@ extension ViewController {
         guard collectionView.frame != .zero else { return }
         collectionView.flowLayout.itemSize = .init(width: collectionView.frame.width - 100,
                                                    height: collectionView.frame.height)
+        collectionView.reloadData()
     }
     
 }
