@@ -15,9 +15,10 @@ class ViewController: UIViewController {
         UIColor(red: 19.0/255.0, green: 51.0/255.0, blue: 76.0/255.0, alpha: 1.0),
         UIColor(red: 0.0/255.0, green: 87.0/255.0, blue: 46.0/255.0, alpha: 1.0),
         UIColor(red: 253.0/255.0, green: 95.0/255.0, blue: 0.0/255.0, alpha: 1.0),
-        UIColor(red: 19.0/255.0, green: 51.0/255.0, blue: 76.0/255.0, alpha: 1.0),
-        UIColor(red: 0.0/255.0, green: 87.0/255.0, blue: 46.0/255.0, alpha: 1.0),
-        UIColor(red: 253.0/255.0, green: 95.0/255.0, blue: 0.0/255.0, alpha: 1.0)
+        UIColor(red: 55.0/255.0, green: 35.0/255.0, blue: 120.0/255.0, alpha: 1.0)
+//        UIColor(red: 19.0/255.0, green: 51.0/255.0, blue: 76.0/255.0, alpha: 1.0),
+//        UIColor(red: 0.0/255.0, green: 87.0/255.0, blue: 46.0/255.0, alpha: 1.0),
+//        UIColor(red: 253.0/255.0, green: 95.0/255.0, blue: 0.0/255.0, alpha: 1.0)
     ]
     
     //let emojis: [String] = ["👑", "🙈", "👾"]
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
         //view.autoscrollTimeInterval = 3.0
         //view.showsVerticalScrollIndicator = false
         //view.showsHorizontalScrollIndicator = false
+        view.decelerationRate = UIScrollView.DecelerationRate.fast
         
         view.register(CVCell.self, forCellWithReuseIdentifier:"CVCell")
         view.dataSource = self
