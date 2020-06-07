@@ -16,9 +16,6 @@ class ViewController: UIViewController {
         UIColor(red: 0.0/255.0, green: 87.0/255.0, blue: 46.0/255.0, alpha: 1.0),
         UIColor(red: 253.0/255.0, green: 95.0/255.0, blue: 0.0/255.0, alpha: 1.0),
         UIColor(red: 55.0/255.0, green: 35.0/255.0, blue: 120.0/255.0, alpha: 1.0)
-//        UIColor(red: 19.0/255.0, green: 51.0/255.0, blue: 76.0/255.0, alpha: 1.0),
-//        UIColor(red: 0.0/255.0, green: 87.0/255.0, blue: 46.0/255.0, alpha: 1.0),
-//        UIColor(red: 253.0/255.0, green: 95.0/255.0, blue: 0.0/255.0, alpha: 1.0)
     ]
     
     //let emojis: [String] = ["👑", "🙈", "👾"]
@@ -35,14 +32,12 @@ class ViewController: UIViewController {
     
     private lazy var collectionView: CarouselCollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = .init(width: 1080, height: 500)
-        flowLayout.scrollDirection = .horizontal
         
-        let view = CarouselCollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        let view = CarouselCollectionView(frame: .zero, collectionViewFlowLayout: flowLayout)
     
         view.translatesAutoresizingMaskIntoConstraints = false
-        //view.isAutoscrollEnabled = true
-        //view.autoscrollTimeInterval = 3.0
+        view.isAutoscrollEnabled = true
+        view.autoScrollTime = 3.0
         //view.showsVerticalScrollIndicator = false
         //view.showsHorizontalScrollIndicator = false
         view.decelerationRate = UIScrollView.DecelerationRate.fast
@@ -60,6 +55,15 @@ class ViewController: UIViewController {
         
         view.numberOfPages = colors.count
         view.tintColor = .black
+        
+        return view
+    }()
+    
+    private lazy var bottomView: AButton = {
+        let view = AButton()
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .yellow
         
         return view
     }()
@@ -120,35 +124,16 @@ private extension ViewController {
         collectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         
         //view.addSubview(pageControl)
+        
+        contentView.addSubview(bottomView)
+        bottomView.topAnchor.constraint(equalTo: collectionView.bottomAnchor).isActive = true
+        bottomView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        bottomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        bottomView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
     }
 
 }
 
-
-#if os(iOS)
-//MARK: - CarouselCollectionView methods
-//MARK: CarouselCollectionViewDataSource implementation
-extension ViewController: CarouselCollectionViewDataSource {
-    var numberOfItems: Int {
-        return colors.count
-    }
-    
-    func carouselCollectionView(_ carouselCollectionView: CarouselCollectionView, cellForItemAt index: Int, fakeIndexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "id", for: fakeIndexPath) as! CVCell
-        cell.backgroundColor = colors[index]
-        cell.label.text = emojis[index]
-        return cell
-    }
-    
-    func carouselCollectionView(_ carouselCollectionView: CarouselCollectionView, didSelectItemAt index: Int) {
-        print("Did select item at \(index)")
-    }
-    
-    func carouselCollectionView(_ carouselCollectionView: CarouselCollectionView, didDisplayItemAt index: Int) {
-        //pageControl.currentPage = index
-    }
-}
-#elseif os(tvOS)
 //MARK: - CarouselCollectionView methods
 //MARK: CarouselCollectionViewDataSource implementation
 extension ViewController: UICollectionViewDataSource {
@@ -162,7 +147,6 @@ extension ViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CVCell", for: indexPath) as! CVCell
         
         cell.backgroundColor = colors[indexPath.row]
-        //cell.label.text = emojis[indexPath.row]
         
         return cell
     }
@@ -174,4 +158,29 @@ extension ViewController: UICollectionViewDataSource {
 extension ViewController: UICollectionViewDelegate {
     
 }
-#endif
+
+//MARK: CarouselCollectionViewDataSource implementation
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        return .init(width: (collectionView.frame.height) * (16/9),
+                     height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 50
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 50
+    }
+    
+}

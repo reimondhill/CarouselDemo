@@ -42,6 +42,24 @@ class CarouselCollectionView: UICollectionView {
     /// The original delegate for the carousel
     private weak var rootDelegate: UICollectionViewDelegateFlowLayout?
     
+    override var collectionViewLayout: UICollectionViewLayout {
+        didSet {
+            if !(collectionViewLayout is UICollectionViewFlowLayout) {
+                fatalError("CarouselCollectionView can only be used with UICollectionViewFlowLayout instances")
+            }
+        }
+    }
+    /// CollectionViewLayout as UICollectionViewFlowLayout
+    var collectionViewFlowLayout: UICollectionViewFlowLayout {
+        get { return collectionViewLayout as! UICollectionViewFlowLayout }
+        set { super.collectionViewLayout = newValue}
+    }
+    
+    override var decelerationRate: UIScrollView.DecelerationRate {
+        get { return .fast}
+        set {}
+    }
+    
     /// Current direction our focus is traveling
     var focusHeading: UIFocusHeading?
     /// Cell to focus on if we update focus
@@ -81,7 +99,7 @@ class CarouselCollectionView: UICollectionView {
     }
     
     /// Whether or not to auto-scroll this carousel when the user is not interacting with it.
-    var autoScroll: Bool = false
+    var isAutoscrollEnabled: Bool = false
     /// The time in between auto-scroll events.
     var autoScrollTime: Double = 5.0
     /// The timer used to control auto-scroll behavior
@@ -89,14 +107,15 @@ class CarouselCollectionView: UICollectionView {
     
 
     //MARK: - Constructor
-    override init(frame: CGRect, collectionViewLayout collectionViewFlowLayout: UICollectionViewLayout) {
+    init(frame: CGRect, collectionViewFlowLayout: UICollectionViewFlowLayout) {
         super.init(frame: frame, collectionViewLayout: collectionViewFlowLayout)
         
         setup()
     }
     
     required public init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+    
     }
     
 }
@@ -113,12 +132,13 @@ extension CarouselCollectionView {
     override func reloadData() {
         super.reloadData()
         
-        DispatchQueue.main.async {
-            guard self.count > 0 else {
+        DispatchQueue.main.async { [weak self] in
+            guard let sSelf = self else { return }
+            guard sSelf.count > 0 else {
                 return
             }
-            self.scrollToItem(self.buffer, animated: false)
-            self.beginAutoScroll()
+            sSelf.scrollToItem(sSelf.buffer, animated: false)
+            //sSelf.beginAutoScroll()
         }
     }
     
@@ -144,49 +164,53 @@ extension CarouselCollectionView {
 private extension CarouselCollectionView {
 
     private func setup() {
-        guard collectionViewLayout is UICollectionViewFlowLayout else {
-            fatalError("CarouselCollectionView can only be used with UICollectionViewFlowLayout instances")
+        if collectionViewFlowLayout.scrollDirection != .horizontal {
+            print(self, "WARNING: ", "Vertical scrolling not supported. Changed to horizontal.")
+            collectionViewFlowLayout.scrollDirection = .horizontal
         }
-        object_setClass(collectionViewLayout, Layout.self)
+        
+        object_setClass(collectionViewFlowLayout, Layout.self)
         delegate = self
+        dataSource = self
         setNeedsFocusUpdate()
     }
 
     /// Returns the index path of the root data source item given an index path from this collection
     /// view, which naturally includes the buffer cells.
     func adjustedIndexPathForIndexPath(_ indexPath: IndexPath) -> IndexPath {
-        precondition(count >= buffer, "Ouroboros requires at least twice the number of items per page to work properly. For best results: a number that is evenly divisible by the number of items per page.")
+        precondition(count >= buffer, "CarouselCollectionView requires at least twice the number of items per page to work properly. For best results: a number that is evenly divisible by the number of items per page.")
+        
         let index = indexPath.item
         let wrapped = (index - buffer < 0) ? (count + (index - buffer)) : (index - buffer)
         let adjustedIndex = wrapped % count
+        
         return IndexPath(item: adjustedIndex, section: 0)
     }
 
     func scrollToItem(_ item: Int, animated: Bool) {
-        if let initialOffset = (self.collectionViewLayout as! Layout).offsetForItemAtIndex(item) {
-            self.setContentOffset(CGPoint(x: initialOffset,y: self.contentOffset.y), animated: animated)
+        if let initialOffset = (collectionViewFlowLayout as! Layout).offsetForItemAtIndex(item) {
+            setContentOffset(CGPoint(x: initialOffset,y: contentOffset.y), animated: animated)
         }
         
         // Update focus element in case we have it
-        self.currentlyFocusedItem = item
-        self.manualFocusCell = IndexPath(item: self.currentlyFocusedItem, section: 0)
-        self.setNeedsFocusUpdate()
+        currentlyFocusedItem = item
+        manualFocusCell = IndexPath(item: currentlyFocusedItem, section: 0)
+        setNeedsFocusUpdate()
     }
     
     func jump(_ direction: JumpDirection) {
-        let currentOffset = self.contentOffset.x
-        var jumpOffset = CGFloat(count) * (collectionViewLayout as! Layout).totalItemWidth
+        let currentOffset = contentOffset.x
+        var jumpOffset = CGFloat(count) * (collectionViewFlowLayout as! Layout).totalItemWidth
         
         if case .backward = direction {
             jumpOffset *= -1
         }
-        self.setContentOffset(CGPoint(x: currentOffset + jumpOffset, y: self.contentOffset.y),
-            animated: false)
+        setContentOffset(CGPoint(x: currentOffset + jumpOffset, y: contentOffset.y), animated: false)
     }
     
     //MARK: - Auto Scroll
     func beginAutoScroll() {
-        guard autoScroll else {
+        guard isAutoscrollEnabled else {
             return
         }
         
@@ -200,7 +224,7 @@ private extension CarouselCollectionView {
     }
     
     @objc func scrollToNextPage() {
-        var nextItem = self.currentlyFocusedItem + itemsPerPage
+        var nextItem = currentlyFocusedItem + itemsPerPage
         if nextItem >= buffer + count {
             nextItem -= count
             jump(.backward)
@@ -239,7 +263,7 @@ extension CarouselCollectionView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
         // Allow users to leave
-        guard let to = context.nextFocusedIndexPath else {
+        guard let nextFocusedIndexPath = context.nextFocusedIndexPath else {
             beginAutoScroll()
             return true
         }
@@ -252,19 +276,19 @@ extension CarouselCollectionView: UICollectionViewDelegate {
         
         // Restrict movement to a page at a time if we're swiping, but don't break
         // keyboard access in simulator.
-        if initiallyFocusedItem != nil && abs(to.item - initiallyFocusedItem!) > itemsPerPage {
+        if initiallyFocusedItem != nil && abs(nextFocusedIndexPath.item - initiallyFocusedItem!) > itemsPerPage {
             return false
         }
         
         focusHeading = context.focusHeading
-        currentlyFocusedItem = to.item
+        currentlyFocusedItem = nextFocusedIndexPath.item
         
-        if focusHeading == .left && to.item < buffer {
+        if focusHeading == .left && nextFocusedIndexPath.item < buffer {
             isJumping = true
             currentlyFocusedItem += count
         }
         
-        if focusHeading == .right && to.item >= buffer + count {
+        if focusHeading == .right && nextFocusedIndexPath.item >= buffer + count {
             isJumping = true
             currentlyFocusedItem -= count
         }
@@ -282,9 +306,47 @@ extension CarouselCollectionView: UICollectionViewDelegate {
 //MARK: UICollectionViewDelegateFlowLayout implementation
 extension CarouselCollectionView: UICollectionViewDelegateFlowLayout {
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if let size = rootDelegate?.collectionView?(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath) {
+            collectionViewFlowLayout.itemSize = size
+            return size
+        }
+        else {
+            return collectionViewFlowLayout.itemSize
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if let edges = rootDelegate?.collectionView?(collectionView, layout: collectionViewLayout, insetForSectionAt: section) {
+            collectionViewFlowLayout.sectionInset = edges
+            return edges
+        }
+        else {
+            return collectionViewFlowLayout.sectionInset
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if let minimumLineSpacing = rootDelegate?.collectionView?(collectionView, layout: collectionViewLayout, minimumLineSpacingForSectionAt: section) {
+            collectionViewFlowLayout.minimumLineSpacing = minimumLineSpacing
+            return minimumLineSpacing
+        }
+        else {
+            return collectionViewFlowLayout.minimumLineSpacing
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        if let minimumInteritemSpacing = rootDelegate?.collectionView?(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAt: section) {
+            collectionViewFlowLayout.minimumInteritemSpacing = minimumInteritemSpacing
+            return minimumInteritemSpacing
+        }
+        else {
+            return collectionViewFlowLayout.minimumInteritemSpacing
+        }
+    }
+    
 }
-
-
 
 
 //MARK: - Layout
@@ -308,15 +370,16 @@ extension CarouselCollectionView {
             let firstItemOnPageIndex = pageIndex * pageSize
             let firstItemOnPage = IndexPath(item: firstItemOnPageIndex, section: 0)
             
-            guard let cellAttributes = self.layoutAttributesForItem(at: firstItemOnPage) else {
+            guard let cellAttributes = layoutAttributesForItem(at: firstItemOnPage) else {
                 return nil
             }
             
-            let offset = ((carousel.bounds.size.width - (CGFloat(pageSize) * totalItemWidth) - minimumLineSpacing) / 2.0) + minimumLineSpacing
+            let offset = ((carousel.frame.size.width - (CGFloat(pageSize) * totalItemWidth) - minimumLineSpacing) / 2.0) + minimumLineSpacing
             return cellAttributes.frame.origin.x - offset
         }
         
         override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+            
             guard let offset = offsetForItemAtIndex(carousel.currentlyFocusedItem) else {
                 return super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
             }

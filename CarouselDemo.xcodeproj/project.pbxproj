@@ -15,7 +15,9 @@
 		CF364126248AB78E0098BBE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF364124248AB78E0098BBE6 /* LaunchScreen.storyboard */; };
 		CF364131248AB78E0098BBE6 /* CarouselDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF364130248AB78E0098BBE6 /* CarouselDemoTests.swift */; };
 		CF36413C248AB78E0098BBE6 /* CarouselDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36413B248AB78E0098BBE6 /* CarouselDemoUITests.swift */; };
-		CF36414A248AB79E0098BBE6 /* CarouselCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF364149248AB79E0098BBE6 /* CarouselCollectionView.swift */; };
+		CF79C2C0248CF8A400796DB5 /* AView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79C2BF248CF8A400796DB5 /* AView.swift */; };
+		CF79C2C1248CF8F800796DB5 /* AView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79C2BF248CF8A400796DB5 /* AView.swift */; };
+		CF79C2C2248D126300796DB5 /* CarouselCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF934EFE248BD925000C0BC5 /* CarouselCollectionView.swift */; };
 		CF934EA7248BA58A000C0BC5 /* CCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF934EA6248BA58A000C0BC5 /* CCollectionViewCell.swift */; };
 		CF934EE5248BCCCF000C0BC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF934EE4248BCCCF000C0BC5 /* AppDelegate.swift */; };
 		CF934EEF248BCCD1000C0BC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF934EED248BCCD0000C0BC5 /* LaunchScreen.storyboard */; };
@@ -59,6 +61,7 @@
 		CF36413B248AB78E0098BBE6 /* CarouselDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselDemoUITests.swift; sourceTree = "<group>"; };
 		CF36413D248AB78E0098BBE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CF364149248AB79E0098BBE6 /* CarouselCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCollectionView.swift; sourceTree = "<group>"; };
+		CF79C2BF248CF8A400796DB5 /* AView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AView.swift; sourceTree = "<group>"; };
 		CF934EA6248BA58A000C0BC5 /* CCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF934EE2248BCCCF000C0BC5 /* CarouselDemoTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarouselDemoTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF934EE4248BCCCF000C0BC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 				CF934EA4248B9638000C0BC5 /* Structure */,
 				CF36411A248AB78A0098BBE6 /* ViewController.swift */,
 				CF934EFC248BD677000C0BC5 /* CarouselView */,
+				CF79C2BF248CF8A400796DB5 /* AView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -400,9 +404,10 @@
 			files = (
 				CF934EA7248BA58A000C0BC5 /* CCollectionViewCell.swift in Sources */,
 				CF364121248AB78A0098BBE6 /* CarouselDemo.xcdatamodeld in Sources */,
-				CF36414A248AB79E0098BBE6 /* CarouselCollectionView.swift in Sources */,
 				CF36411B248AB78A0098BBE6 /* ViewController.swift in Sources */,
+				CF79C2C2248D126300796DB5 /* CarouselCollectionView.swift in Sources */,
 				CF364117248AB78A0098BBE6 /* AppDelegate.swift in Sources */,
+				CF79C2C0248CF8A400796DB5 /* AView.swift in Sources */,
 				CF364119248AB78A0098BBE6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF79C2C1248CF8F800796DB5 /* AView.swift in Sources */,
 				CF934EFB248BCE39000C0BC5 /* CarouselDemo.xcdatamodeld in Sources */,
 				CF934EFF248BD925000C0BC5 /* CarouselCollectionView.swift in Sources */,
 				CF934EF8248BCE22000C0BC5 /* ViewController.swift in Sources */,
