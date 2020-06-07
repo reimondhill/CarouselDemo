@@ -11,14 +11,12 @@
 		CF364119248AB78A0098BBE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF364118248AB78A0098BBE6 /* SceneDelegate.swift */; };
 		CF364121248AB78A0098BBE6 /* CarouselDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF36411F248AB78A0098BBE6 /* CarouselDemo.xcdatamodeld */; };
 		CF364123248AB78E0098BBE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF364122248AB78E0098BBE6 /* Assets.xcassets */; };
-		CF364126248AB78E0098BBE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF364124248AB78E0098BBE6 /* LaunchScreen.storyboard */; };
 		CF364131248AB78E0098BBE6 /* CarouselDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF364130248AB78E0098BBE6 /* CarouselDemoTests.swift */; };
 		CF36413C248AB78E0098BBE6 /* CarouselDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36413B248AB78E0098BBE6 /* CarouselDemoUITests.swift */; };
 		CF79C2C0248CF8A400796DB5 /* AView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79C2BF248CF8A400796DB5 /* AView.swift */; };
 		CF79C2C1248CF8F800796DB5 /* AView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79C2BF248CF8A400796DB5 /* AView.swift */; };
 		CF934EA7248BA58A000C0BC5 /* CCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF934EA6248BA58A000C0BC5 /* CCollectionViewCell.swift */; };
 		CF934EE5248BCCCF000C0BC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF934EE4248BCCCF000C0BC5 /* AppDelegate.swift */; };
-		CF934EEF248BCCD1000C0BC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF934EED248BCCD0000C0BC5 /* LaunchScreen.storyboard */; };
 		CF934EF4248BCCF1000C0BC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF364122248AB78E0098BBE6 /* Assets.xcassets */; };
 		CF934EF8248BCE22000C0BC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF36411A248AB78A0098BBE6 /* ViewController.swift */; };
 		CF934EFA248BCE2A000C0BC5 /* CCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF934EA6248BA58A000C0BC5 /* CCollectionViewCell.swift */; };
@@ -26,6 +24,8 @@
 		CF934EFF248BD925000C0BC5 /* CarouselCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF934EFE248BD925000C0BC5 /* CarouselCollectionView.swift */; };
 		CFABBE56248D2A6100268F49 /* CarouselCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF364149248AB79E0098BBE6 /* CarouselCollectionView.swift */; };
 		CFABBE58248D2A8100268F49 /* ViewControlleriOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFABBE57248D2A6800268F49 /* ViewControlleriOS.swift */; };
+		CFABBE59248D2B2800268F49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF934EED248BCCD0000C0BC5 /* LaunchScreen.storyboard */; };
+		CFABBE5B248D2B5500268F49 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF364124248AB78E0098BBE6 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CF364113248AB78A0098BBE6 /* CarouselDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarouselDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF364113248AB78A0098BBE6 /* Carousel iOS Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carousel iOS Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF364116248AB78A0098BBE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF364118248AB78A0098BBE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		CF36411A248AB78A0098BBE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		CF364149248AB79E0098BBE6 /* CarouselCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselCollectionView.swift; sourceTree = "<group>"; };
 		CF79C2BF248CF8A400796DB5 /* AView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AView.swift; sourceTree = "<group>"; };
 		CF934EA6248BA58A000C0BC5 /* CCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCollectionViewCell.swift; sourceTree = "<group>"; };
-		CF934EE2248BCCCF000C0BC5 /* CarouselDemoTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarouselDemoTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF934EE2248BCCCF000C0BC5 /* Carousel tvOS Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Carousel tvOS Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF934EE4248BCCCF000C0BC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF934EEE248BCCD0000C0BC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CF934EF0248BCCD1000C0BC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,7 +109,6 @@
 				CF364115248AB78A0098BBE6 /* CarouselDemo */,
 				CF36412F248AB78E0098BBE6 /* CarouselDemoTests */,
 				CF36413A248AB78E0098BBE6 /* CarouselDemoUITests */,
-				CF934EE3248BCCCF000C0BC5 /* CarouselDemoTV */,
 				CF364114248AB78A0098BBE6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -117,10 +116,10 @@
 		CF364114248AB78A0098BBE6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF364113248AB78A0098BBE6 /* CarouselDemo.app */,
+				CF364113248AB78A0098BBE6 /* Carousel iOS Demo.app */,
 				CF36412C248AB78E0098BBE6 /* CarouselDemoTests.xctest */,
 				CF364137248AB78E0098BBE6 /* CarouselDemoUITests.xctest */,
-				CF934EE2248BCCCF000C0BC5 /* CarouselDemoTV.app */,
+				CF934EE2248BCCCF000C0BC5 /* Carousel tvOS Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,8 +157,6 @@
 				CF934EF7248BCD90000C0BC5 /* iOS */,
 				CF934EF6248BCD83000C0BC5 /* tvOS */,
 				CF364122248AB78E0098BBE6 /* Assets.xcassets */,
-				CF364124248AB78E0098BBE6 /* LaunchScreen.storyboard */,
-				CF364127248AB78E0098BBE6 /* Info.plist */,
 				CF36411F248AB78A0098BBE6 /* CarouselDemo.xcdatamodeld */,
 			);
 			path = SupportingFiles;
@@ -196,14 +193,6 @@
 			path = iOS;
 			sourceTree = "<group>";
 		};
-		CF934EE3248BCCCF000C0BC5 /* CarouselDemoTV */ = {
-			isa = PBXGroup;
-			children = (
-				CF934EED248BCCD0000C0BC5 /* LaunchScreen.storyboard */,
-			);
-			path = CarouselDemoTV;
-			sourceTree = "<group>";
-		};
 		CF934EF5248BCD6D000C0BC5 /* tvOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				CF934EF0248BCCD1000C0BC5 /* Info.plist */,
+				CF934EED248BCCD0000C0BC5 /* LaunchScreen.storyboard */,
 			);
 			path = tvOS;
 			sourceTree = "<group>";
@@ -223,6 +213,8 @@
 		CF934EF7248BCD90000C0BC5 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				CF364127248AB78E0098BBE6 /* Info.plist */,
+				CF364124248AB78E0098BBE6 /* LaunchScreen.storyboard */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -269,7 +261,7 @@
 			);
 			name = CarouselDemo;
 			productName = CarouselDemo;
-			productReference = CF364113248AB78A0098BBE6 /* CarouselDemo.app */;
+			productReference = CF364113248AB78A0098BBE6 /* Carousel iOS Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CF36412B248AB78E0098BBE6 /* CarouselDemoTests */ = {
@@ -322,7 +314,7 @@
 			);
 			name = CarouselDemoTV;
 			productName = CarouselDemoTV;
-			productReference = CF934EE2248BCCCF000C0BC5 /* CarouselDemoTV.app */;
+			productReference = CF934EE2248BCCCF000C0BC5 /* Carousel tvOS Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -377,8 +369,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF364126248AB78E0098BBE6 /* LaunchScreen.storyboard in Resources */,
 				CF364123248AB78E0098BBE6 /* Assets.xcassets in Resources */,
+				CFABBE5B248D2B5500268F49 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,8 +392,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF934EEF248BCCD1000C0BC5 /* LaunchScreen.storyboard in Resources */,
 				CF934EF4248BCCF1000C0BC5 /* Assets.xcassets in Resources */,
+				CFABBE59248D2B2800268F49 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,14 +598,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 33482W4AH2;
-				INFOPLIST_FILE = CarouselDemo/SupportingFiles/Info.plist;
+				INFOPLIST_FILE = CarouselDemo/SupportingFiles/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = reimondhill.CarouselDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Carousel iOS Demo";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -625,14 +617,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 33482W4AH2;
-				INFOPLIST_FILE = CarouselDemo/SupportingFiles/Info.plist;
+				INFOPLIST_FILE = CarouselDemo/SupportingFiles/iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = reimondhill.CarouselDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Carousel iOS Demo";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -734,7 +726,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = reimondhill.CarouselDemoTV;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Carousel tvOS Demo";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -754,7 +746,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = reimondhill.CarouselDemoTV;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Carousel tvOS Demo";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;

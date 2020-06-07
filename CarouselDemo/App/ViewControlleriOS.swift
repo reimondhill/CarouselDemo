@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isAutoscrollEnabled = true
-        view.autoScrollTime = 3.0
+        //view.autoScrollTime = 3.0
         
         view.register(CVCell.self, forCellWithReuseIdentifier:"CVCell")
         view.dataSource = self
