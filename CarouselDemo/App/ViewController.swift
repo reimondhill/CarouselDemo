@@ -17,9 +17,7 @@ class ViewController: UIViewController {
         UIColor(red: 253.0/255.0, green: 95.0/255.0, blue: 0.0/255.0, alpha: 1.0),
         UIColor(red: 55.0/255.0, green: 35.0/255.0, blue: 120.0/255.0, alpha: 1.0)
     ]
-    
-    //let emojis: [String] = ["👑", "🙈", "👾"]
-    
+
     
     //MARK: UI
     private lazy var contentView: UIView = {
@@ -38,14 +36,10 @@ class ViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isAutoscrollEnabled = true
         view.autoScrollTime = 3.0
-        //view.showsVerticalScrollIndicator = false
-        //view.showsHorizontalScrollIndicator = false
-        view.decelerationRate = UIScrollView.DecelerationRate.fast
         
         view.register(CVCell.self, forCellWithReuseIdentifier:"CVCell")
         view.dataSource = self
         view.delegate = self
-        //view.carouselDataSource = self
         
         return view
     }()
@@ -89,20 +83,7 @@ extension ViewController {
         
         setupUI()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        guard collectionView.frame != .zero else { return }
-        //collectionView.flowLayout.itemSize = .init(width: collectionView.frame.width - 100, height: collectionView.frame.height)
-        collectionView.reloadData()
-    }
-    
+
 }
 
 

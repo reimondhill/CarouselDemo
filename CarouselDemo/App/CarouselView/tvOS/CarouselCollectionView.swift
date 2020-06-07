@@ -16,6 +16,7 @@ class CarouselCollectionView: UICollectionView {
     }
     
     //MARK: - Properties
+    //MARK: Protocols
     /// Override dataSource to set up our responder chain
     override weak var dataSource: UICollectionViewDataSource? {
         get {
@@ -55,8 +56,19 @@ class CarouselCollectionView: UICollectionView {
         set { super.collectionViewLayout = newValue}
     }
     
+    //MARK: Functionalities
     override var decelerationRate: UIScrollView.DecelerationRate {
         get { return .fast}
+        set {}
+    }
+    
+    override var showsVerticalScrollIndicator: Bool {
+        get { return false }
+        set {}
+    }
+    
+    override var showsHorizontalScrollIndicator: Bool {
+        get { return false }
         set {}
     }
     
@@ -138,7 +150,7 @@ extension CarouselCollectionView {
                 return
             }
             sSelf.scrollToItem(sSelf.buffer, animated: false)
-            //sSelf.beginAutoScroll()
+            sSelf.setNeedsFocusUpdate()
         }
     }
     
@@ -178,7 +190,7 @@ private extension CarouselCollectionView {
     /// Returns the index path of the root data source item given an index path from this collection
     /// view, which naturally includes the buffer cells.
     func adjustedIndexPathForIndexPath(_ indexPath: IndexPath) -> IndexPath {
-        precondition(count >= buffer, "CarouselCollectionView requires at least twice the number of items per page to work properly. For best results: a number that is evenly divisible by the number of items per page.")
+//        precondition(count >= buffer, "CarouselCollectionView requires at least twice the number of items per page to work properly. For best results: a number that is evenly divisible by the number of items per page.")
         
         let index = indexPath.item
         let wrapped = (index - buffer < 0) ? (count + (index - buffer)) : (index - buffer)
@@ -388,4 +400,3 @@ extension CarouselCollectionView {
     }
     
 }
-
